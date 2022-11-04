@@ -1,0 +1,30 @@
+type Query {
+    productTypes: ProductTypes @resolver(class: "Luxury\\LuxuryTax\\Model\\Resolver\\LuxuryTax")
+}
+
+type ProductTypes {
+    items: [ProductType]
+}
+
+type ProductType {
+    id: Int
+    name: String
+    description: String
+    condition_amount: String
+    tax_rate: String
+    customer_group: Int
+
+}
+
+type Mutation {
+    setProductTypeToProduct (productId: Int, typeId: Int): SetProductTypeToProductOutput  @resolver(class: "Luxury\\LuxuryTax\\Model\\Resolver\\ProductTypesToProduct")
+}
+
+type SetProductTypeToProductOutput {
+    success: String
+    error: String
+}
+
+type ProductInterface {
+    productTypes: Int @resolver(class: "Luxury\\LuxuryTax\\Model\\Resolver\\ProductsProductTypes")
+}

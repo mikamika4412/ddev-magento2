@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/di.xsd">
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="luxuryTax" xsi:type="string">sales_order.luxuryTax</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="luxury_items_grid_data_source" xsi:type="string">
+                    Luxury\LuxuryTax\Model\ResourceModel\Item\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Luxury\LuxuryTax\Api\Data\ItemInterface" type="Luxury\LuxuryTax\Model\Item"/>
+    <preference for="Luxury\LuxuryTax\Api\Data\ItemSearchResultInterface" type="Luxury\LuxuryTax\Model\ItemSearchResult"/>
+    <preference for="Luxury\LuxuryTax\Api\ItemRepositoryInterface" type="Luxury\LuxuryTax\Model\ItemRepository"/>
+
+<!--    <type name="Magento\Customer\Api\CustomerRepositoryInterface">-->
+<!--        <plugin name="save_additional_customer_info" type="Luxury\LuxuryTax\Plugin\AssignAdditionalData" />-->
+<!--    </type>-->
+</config>
+
